@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>달콤한 바나나 레시피 모음</title>
+  <style>
+    /* 기본 스타일 Reset 및 변수 */
+    :root {
+      --primary-color: #ffcc00;
+      --secondary-color: #ffe875;
+      --accent-color: #8B4513;
+      --bg-color: #fffdf2;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* 헤더 영역 */
+    header {
+      background-color: var(--primary-color);
+      color: var(--accent-color);
+      text-align: center;
+      padding: 2.5rem 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* 메인 컨테이너 */
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* 카테고리 필터 버튼 */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border: 2px solid var(--primary-color);
+      background-color: transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--accent-color);
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background-color: var(--primary-color);
+    }
+
+    /* 레시피 그리드 Layout */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* 레시피 카드 */
+    .recipe-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .recipe-image {
+      width: 100%;
+      height: 180px;
+      background-color: #f3f3f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .recipe-content {
+      padding: 1.2rem;
+    }
+
+    .recipe-tag {
+      display: inline-block;
+      background-color: var(--secondary-color);
+      color: var(--accent-color);
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .recipe-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    .recipe-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    /* 요리 재료 & 방법 스텝 */
+    .recipe-details h4 {
+      font-size: 0.9rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.3rem;
+      color: var(--accent-color);
+    }
+
+    .recipe-details ul, .recipe-details ol {
+      padding-left: 1.2rem;
+      font-size: 0.85rem;
+      color: #444;
+    }
+
+    /* 푸터 */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      background-color: #f7f5e8;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍌 바나나 요리 레시피</h1>
+    <p>달콤하고 부드러운 바나나로 만드는 다양한 특별 요리</p>
+  </header>
+
+  <div class="container">
+    <!-- 카테고리 필터 -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" onclick="filterRecipe('all')">전체 보기</button>
+      <button class="filter-btn" onclick="filterRecipe('dessert')">디저트</button>
+      <button class="filter-btn" onclick="filterRecipe('brunch')">브런치/간식</button>
+    </div>
+
+    <!-- 레시피 카드 목록 -->
+    <div class="recipe-grid">
+      
+      <!-- 카드 1: 바나나 팬케이크 -->
+      <div class="recipe-card" data-category="brunch">
+        <div class="recipe-image">🥞</div>
+        <div class="recipe-content">
+          <span class="recipe-tag">브런치</span>
+          <h3 class="recipe-title">노밀가루 바나나 팬케이크</h3>
+          <p class="recipe-desc">바나나와 계란만으로 만드는 건강하고 폭신한 아침 식사용 팬케이크입니다.</p>
+          <div class="recipe-details">
+            <h4>재료</h4>
+            <ul>
+              <li>잘 익은 바나나 1개, 계란 2개, 시나몬 가루 약간</li>
+            </ul>
+            <h4>만드는 법</h4>
+            <ol>
+              <li>볼에 바나나를 으깨고 계란을 넣어 잘 섞어줍니다.</li>
+              <li>약불로 달군 팬에 식용유를 살짝 두르고 반죽을 올립니다.</li>
+              <li>노릇하게 앞뒤로 구워 메이플 시럽을 곁들입니다.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 2: 바나나 브륄레 -->
+      <div class="recipe-card" data-category="dessert">
+        <div class="recipe-image">🍌</div>
+        <div class="recipe-content">
+          <span class="recipe-tag">디저트</span>
+          <h3 class="recipe-title">초간단 바나나 브륄레</h3>
+          <p class="recipe-desc">바삭한 설탕 코팅과 부드러운 바나나의 조화가 매력적인 고급 디저트입니다.</p>
+          <div class="recipe-details">
+            <h4>재료</h4>
+            <ul>
+              <li>바나나 1개, 설탕 1큰술, (선택) 토치 또는 프라이팬</li>
+            </ul>
+            <h4>만드는 법</h4>
+            <ol>
+              <li>바나나를 껍질째 길게 반으로 잘라줍니다.</li>
+              <li>단면에 설탕을 고르게 뿌려줍니다.</li>
+              <li>토치로 설탕을 녹여 갈색빛 코팅을 만들거나, 마른 팬에 단면을 먼저 구워줍니다.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 3: 바나나 토스트 -->
+      <div class="recipe-card" data-category="brunch">
+        <div class="recipe-image">🍞</div>
+        <div class="recipe-content">
+          <span class="recipe-tag">브런치</span>
+          <h3 class="recipe-title">피넛버터 바나나 토스트</h3>
+          <p class="recipe-desc">고소한 땅콩버터와 달콤한 바나나가 만나 에너지를 더해주는 완벽한 조합입니다.</p>
+          <div class="recipe-details">
+            <h4>재료</h4>
+            <ul>
+              <li>식빵 1장, 땅콩버터 1.5큰술, 바나나 1/2개, 견과류 약간</li>
+            </ul>
+            <h4>만드는 법</h4>
+            <ol>
+              <li>식빵을 토스터나 팬에 바삭하게 굽습니다.</li>
+              <li>땅콩버터를 따뜻한 토스트 위에 고르게 바릅니다.</li>
+              <li>동글게 슬라이스한 바나나를 얹고 견과류를 뿌립니다.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 4: 바나나 나이스크림 -->
+      <div class="recipe-card" data-category="dessert">
+        <div class="recipe-image">🍨</div>
+        <div class="recipe-content">
+          <span class="recipe-tag">디저트</span>
+          <h3 class="recipe-title">바나나 소프트 아이스크림</h3>
+          <p class="recipe-desc">설탕이나 첨가물 없이 얼린 바나나만 갈아 만든 100% 천연 아이스크림입니다.</p>
+          <div class="recipe-details">
+            <h4>재료</h4>
+            <ul>
+              <li>냉동 바나나 2개, 우유(또는 두유) 2큰술, 코코아 가루(선택)</li>
+            </ul>
+            <h4>만드는 법</h4>
+            <ol>
+              <li>껍질을 벗겨 적당히 잘라 동결시킨 바나나를 준비합니다.</li>
+              <li>믹서에 냉동 바나나와 우유 약간을 넣고 부드러워질 때까지 습니다.</li>
+              <li>취향에 따라 코코아 가루나 꿀을 첨가해 완성합니다.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 달콤한 바나나 레시피. All rights reserved.</p>
+  </footer>
+
+  <!-- 필터 동작용 JavaScript -->
+  <script>
+    function filterRecipe(category) {
+      // 모든 카드 선택
+      const cards = document.querySelectorAll('.recipe-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // 버튼 활성화 상태 변경
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // 필터링 적용
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
